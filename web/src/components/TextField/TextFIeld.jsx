@@ -4,13 +4,14 @@ import './TextField.css'
 function TextField(props) {
    const {
       placeholder,
-      onChange
+      onChange,
+      type = 'text',
    } = props;
 
    return (
       <>
          <input
-            type="text"
+            type={type}
             className="defaultInput"
             placeholder={placeholder}
             onChange={onChange}

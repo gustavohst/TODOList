@@ -1,13 +1,12 @@
 import './App.css';
+import Login from './pages/Login/Login';
 
 import ProjectBoard from './pages/ProjectBoard/ProjectBoard';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <ProjectBoard />
-      </header>
+      <Login />
     </div>
   );
 }
