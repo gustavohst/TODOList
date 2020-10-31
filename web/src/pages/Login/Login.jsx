@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import './Login.css'
 
-import Label from "../../components/Label/Label";
 import TextField from "../../components/TextField/TextField";
 import Button from "../../components/Button/Button";
 

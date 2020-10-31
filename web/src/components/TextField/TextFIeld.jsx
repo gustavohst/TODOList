@@ -4,7 +4,7 @@ import './TextField.css'
 function TextField(props) {
    const {
       placeholder,
-      onChange,
+      onBlur,
       type = 'text',
    } = props;
 
@@ -14,7 +14,7 @@ function TextField(props) {
             type={type}
             className="defaultInput"
             placeholder={placeholder}
-            onChange={onChange}
+            onBlur={onBlur}
          />
       </>
    );

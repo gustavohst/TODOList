@@ -6,7 +6,8 @@ import ProjectBoard from './pages/ProjectBoard/ProjectBoard';
 function App() {
   return (
     <div className="App">
-      <Login />
+      {/* <Login /> */}
+      <ProjectBoard />
     </div>
   );
 }

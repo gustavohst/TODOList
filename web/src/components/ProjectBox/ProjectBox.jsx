@@ -12,10 +12,7 @@ function ProjectBox(props) {
       taskList, //TODO: RECEIVE A CHECKLIST ITEMS
    } = props;
 
-   const [tasks, setTasks] = useState();
-   const [newTaskName, setNewTaskName] = useState();
-
-   const taskListMock = [
+   const [tasks, setTasks] = useState([
       { id: 0, taskName: "Task five", status: 0 },
       { id: 1, taskName: "Task six", status: 0 },
       { id: 2, taskName: "Task seven", status: 0 },
@@ -24,11 +21,8 @@ function ProjectBox(props) {
       { id: 5, taskName: "Task two", status: 1 },
       { id: 6, taskName: "Task tree", status: 1 },
       { id: 7, taskName: "Task four", status: 1 },
-   ];
-
-   useEffect(()=>{
-      setTasks(taskListMock);
-   },[]);
+   ]);
+   const [newTaskName, setNewTaskName] = useState();
 
    const handleCheck = (taskItem) => {
       let status = taskItem.status === 0 ? 1 : 0;    
@@ -39,10 +33,10 @@ function ProjectBox(props) {
 
    const handleAddTask = useCallback((newTaskName) => {
       let newTask = { id: tasks.length, taskName: newTaskName, status: 0 }    
-
-      console.log(newTask)
+ 
       if(tasks){
-         //setTasks(...tasks, newTask); // ADD NEW VALUE IN STATE
+         let test = [...tasks, newTask];
+         setTasks(test);
       }
       //TODO: Insert in database.    
    },[tasks]);
@@ -84,7 +78,7 @@ function ProjectBox(props) {
             </div>
             <div className="pipeLine" />
             <div className="addNewTask">
-               <TextField placeholder="Task" onChange={event => setNewTaskName(event.target.value)} />
+               <TextField placeholder="Task" onBlur={event => setNewTaskName(event.target.value)} />
                <Button layout="defaultButton" label="Add" onClick={() => handleAddTask(newTaskName)} />
             </div>
          </div>

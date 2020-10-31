@@ -7,6 +7,8 @@ import Menu from "../../components/Menu/Menu";
 
 function ProjectBoard() {
 
+   //TODO: Get User Projects
+
    return (
       <div className="projectBoardContainer">
          <div className="boardTopBar">
