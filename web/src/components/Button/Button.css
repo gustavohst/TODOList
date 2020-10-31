@@ -25,3 +25,14 @@ button:focus {
    min-width: 170px;
    margin: 10px;
 }
+
+.menuItem{
+   border: 1px solid #C6c6c6;
+   border-radius: 0px;
+   height: 30px;
+   min-width: 120px;
+   margin: 10px 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}

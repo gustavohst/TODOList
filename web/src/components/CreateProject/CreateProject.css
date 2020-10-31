@@ -1,0 +1,13 @@
+.createProjectContainer{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   background-color: #dddddd;
+   height: 200px;
+   width: 250px;
+   padding: 0 20px;
+}
+
+.createProjectContainer .bigTitle{
+   margin-bottom: 10px;
+}

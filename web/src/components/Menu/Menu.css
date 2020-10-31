@@ -1,0 +1,9 @@
+.menuList{
+   position: absolute;
+   display: flex;
+   justify-content: center;
+   background-color: #ffffff;
+   border: 1px solid #C6C6C6;
+   min-width: 140px;
+   min-height: 40px;
+}

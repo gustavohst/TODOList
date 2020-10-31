@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import './ProjectBox.css'
 import Icon from "../Icon/Icon";
 import Label from '../Label/Label'
 import Checkbox from "../Checkbox/Checkbox";
+import TextField from "../TextField/TextField";
+import Button from "../Button/Button";
 
 function ProjectBox(props) {
    const {
       projectName,
-      taskList,
+      taskList, //TODO: RECEIVE A CHECKLIST ITEMS
    } = props;
 
    const [tasks, setTasks] = useState();
+   const [newTaskName, setNewTaskName] = useState();
 
-   let taskListMock = [
+   const taskListMock = [
       { id: 0, taskName: "Task five", status: 0 },
       { id: 1, taskName: "Task six", status: 0 },
       { id: 2, taskName: "Task seven", status: 0 },
@@ -29,11 +32,20 @@ function ProjectBox(props) {
 
    const handleCheck = (taskItem) => {
       let status = taskItem.status === 0 ? 1 : 0;    
-      let newTaskList = tasks.map(task => (task.id === taskItem.id ? {...task, status} : task));
-      
+      let newTaskList = tasks.map(task => (task.id === taskItem.id ? {...task, status} : task));    
       //TODO: Insert in database.
       setTasks(newTaskList);
    } 
+
+   const handleAddTask = useCallback((newTaskName) => {
+      let newTask = { id: tasks.length, taskName: newTaskName, status: 0 }    
+
+      console.log(newTask)
+      if(tasks){
+         //setTasks(...tasks, newTask); // ADD NEW VALUE IN STATE
+      }
+      //TODO: Insert in database.    
+   },[tasks]);
 
    return (
       <>
@@ -70,9 +82,11 @@ function ProjectBox(props) {
                      />)
                })}
             </div>
-
-            <div>DONE</div>
-            <div>FOOTER TESTE TESTE TESTE</div>
+            <div className="pipeLine" />
+            <div className="addNewTask">
+               <TextField placeholder="Task" onChange={event => setNewTaskName(event.target.value)} />
+               <Button layout="defaultButton" label="Add" onClick={() => handleAddTask(newTaskName)} />
+            </div>
          </div>
       </>
    );

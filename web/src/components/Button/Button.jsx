@@ -1,11 +1,13 @@
 import React from "react";
 import './Button.css'
+import Icon from "../Icon/Icon";
 
 function Button(props) {
    const {
       label,
       layout = "defaultButton",
       onClick,
+      icon,
    } = props;
 
    return (
@@ -13,7 +15,9 @@ function Button(props) {
          <button 
             className={layout}
             onClick={onClick}
-         >{label}</button>
+         >{label}
+         {icon && <Icon text={icon}/>}
+         </button>
       </>
    );
 }

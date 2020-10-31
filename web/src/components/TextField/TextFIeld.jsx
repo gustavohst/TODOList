@@ -4,6 +4,7 @@ import './TextField.css'
 function TextField(props) {
    const {
       placeholder,
+      onChange
    } = props;
 
    return (
@@ -12,7 +13,7 @@ function TextField(props) {
             type="text"
             className="defaultInput"
             placeholder={placeholder}
-            
+            onChange={onChange}
          />
       </>
    );

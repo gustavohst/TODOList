@@ -1,6 +1,6 @@
 import './App.css';
 
-import ProjectBoard from './pages/projectBoard/ProjectBoard';
+import ProjectBoard from './pages/ProjectBoard/ProjectBoard';
 
 function App() {
   return (

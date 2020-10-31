@@ -1,6 +1,5 @@
 .projectBoxContainer{
-   margin: 20px;
-   width: 250px;
+   width: 300px;
    min-height: 400px;
    border: 1px solid #C6C6C6;
 }
@@ -10,12 +9,13 @@
    display: flex;
    justify-content: space-between;
    align-items: center;
-   flex-grow: 1;
    height: 30px;
 }
 
 .topBar div{
    margin: 0 10px;
+   display: flex;
+   align-items: center;
 }
 
 .checkList{
@@ -23,4 +23,16 @@
    flex-direction: column;
    align-items: flex-start;
    margin: 10px;
+}
+
+.addNewTask{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 10px;
+}
+
+.pipeLine{
+   border-top: 1px solid #C6C6C6;
+   margin: 10px 10px;
 }

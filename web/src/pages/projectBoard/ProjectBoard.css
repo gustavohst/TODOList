@@ -1,13 +1,26 @@
 .projectBoardContainer{
+   color: #333333;
+   border: 1px solid #c6c6c6;
+   min-width: 1000px;
+   width: 80vw;
+}
+
+.boardBody{
    display:flex;
    flex-direction: row;
-   color: #333333;
-   border: 1px solid grey;
+   justify-content: space-around;
+   padding: 0 30px 30px 30px;
 }
 
-.examples{
-   display:flex;
-   flex-direction: column;
+.boardTopBar{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 30px;
+   background: linear-gradient(180deg, rgba(204,204,204,1) 0%,
+    rgb(190, 190, 190) 70%);
 }
 
-
+.boardTopBar div{
+   margin: 0 10px;
+}

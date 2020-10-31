@@ -1,3 +1,7 @@
+input{
+   text-indent: 10px;
+ }
+
 input:focus {
    outline: unset;
 }
@@ -5,5 +9,6 @@ input:focus {
 .defaultInput{
    height: 30px;
    border-radius: 5px;
-   border: 1px solid #cccccc
+   border: 1px solid #cccccc;
+   margin: 0 10px;
 }
