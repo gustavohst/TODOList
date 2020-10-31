@@ -1,0 +1,13 @@
+.projectBoardContainer{
+   display:flex;
+   flex-direction: row;
+   color: #333333;
+   border: 1px solid grey;
+}
+
+.examples{
+   display:flex;
+   flex-direction: column;
+}
+
+
