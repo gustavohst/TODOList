@@ -1,0 +1,27 @@
+button{
+   border: 0;
+   cursor: pointer;
+}
+
+button:focus {
+   outline: unset;
+}
+
+.defaultButton{
+   color: honeydew;
+   background: #2c974b;
+   border-radius: 5px;
+   padding: 0 30px;
+   height: 30px;
+   margin: 10px;
+}
+
+.largeButton{
+   color: honeydew;
+   background: #45b6fe;
+   border-radius: 5px;
+   padding: 0 30px;
+   height: 30px;
+   min-width: 170px;
+   margin: 10px;
+}

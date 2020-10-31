@@ -1,0 +1,9 @@
+input:focus {
+   outline: unset;
+}
+
+.defaultInput{
+   height: 30px;
+   border-radius: 5px;
+   border: 1px solid #cccccc
+}
