@@ -16,6 +16,8 @@ function ProjectBox(props) {
 
    const [tasks, setTasks] = useState(taskList);
    const [newTaskName, setNewTaskName] = useState();
+   const [editProjectName, setEditProjectName] = useState(false);
+   const [actualProjectName, setActualProjectName] = useState(projectName);
 
    useEffect(() => {
       setTasks(taskList)
@@ -42,7 +44,7 @@ function ProjectBox(props) {
 
    const deleteTask = async (taskId) => {
       await api.delete(`tasks/${taskId}`).then(() => {
-         let actualTasks = tasks.filter(task => task.id !== taskId) 
+         let actualTasks = tasks.filter(task => task.id !== taskId)
          setTasks(actualTasks);
       });
    }
@@ -50,6 +52,17 @@ function ProjectBox(props) {
    const deleteProject = async (projectId) => {
       await api.delete(`projects/${projectId}`).then(() => {
          callback(true);
+      });
+   }
+
+   const editProject = async (newProjectName) => {
+      const payload = {
+         "name": newProjectName,
+      }
+
+      await api.put(`projects/${projectId}`, payload).then(response => {
+         setActualProjectName(newProjectName);
+         setEditProjectName(false);
       });
    }
 
@@ -74,10 +87,22 @@ function ProjectBox(props) {
       <>
          <div className="projectBoxContainer">
             <div className="topBar">
-               <div><Label text={projectName} type="smallTitle" /></div>
+               {
+                  editProjectName
+                     ?
+                     <div><TextField 
+                        type="smallTitle" 
+                        onBlur={(event) => editProject(event.target.value)} 
+                        />
+                     </div>
+                     :
+                     <div><Label text={actualProjectName} type="smallTitle" /></div>
+               }
+
+               {/*  */}
                <div>
                   <Button
-                     //onClick={() => handleAddTask(newTaskName)}
+                     onClick={() => setEditProjectName(!editProjectName)}
                      icon="edit"
                   />
                   <Button
@@ -107,8 +132,8 @@ function ProjectBox(props) {
                   )
                })}
             </div>
-            <div className="checkListTitle">       
-                 <Label text="Done" type="mediumTitle" />
+            <div className="checkListTitle">
+               <Label text="Done" type="mediumTitle" />
             </div>
 
             <div className="checkList">
