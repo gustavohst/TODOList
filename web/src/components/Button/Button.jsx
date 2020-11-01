@@ -5,7 +5,7 @@ import Icon from "../Icon/Icon";
 function Button(props) {
    const {
       label,
-      layout = "defaultButton",
+      layout,
       onClick,
       icon,
    } = props;

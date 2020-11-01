@@ -15,11 +15,19 @@ function Menu() {
 
    return (
       <div>
-         <Button label="User settings" onClick={(event) => handleMenu(event)} />
+         <Button
+            label="User settings"
+            layout="defaultButton"
+            onClick={(event) => handleMenu(event)} 
+         />
 
          {showMenu &&
             <div className="menuList">
-               <Button layout="menuItem" label="Logout" icon="exit_to_app"/>
+               <Button
+                  layout="menuItem"
+                  label="Logout"
+                  icon="exit_to_app"
+               />
             </div>
          }
       </div>
