@@ -1,5 +1,6 @@
 import React from "react";
 import Label from "../Label/Label";
+import './Checkbox.css';
 
 function Checkbox(props){
    const { 

@@ -9,6 +9,7 @@ import api from '../../services/api';
 function CreateProject(props) {
    const {
       userId = 1,
+      callback,
    } = props;
 
    const [newProjectName, setNewProjectName] = useState();
@@ -19,7 +20,7 @@ function CreateProject(props) {
             "name": projectName,
       };
       await api.post(`projects`, payload).then(response => {
-         console.log(response.data);
+         callback(true);
       });
    }
 

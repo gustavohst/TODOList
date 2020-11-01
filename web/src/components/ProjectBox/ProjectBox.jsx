@@ -73,8 +73,10 @@ function ProjectBox(props) {
                   />
                </div>
             </div>
-            <div className="checkList">
+            <div className="checkListTitle">
                <Label text="To Do" type="mediumTitle" />
+            </div>
+            <div className="checkList">
                {tasks && tasks.filter(task => task.status === 0).map((task) => {
                   return (
                      <div className="listItem">
@@ -92,9 +94,11 @@ function ProjectBox(props) {
                   )
                })}
             </div>
+            <div className="checkListTitle">       
+                 <Label text="Done" type="mediumTitle" />
+            </div>
 
             <div className="checkList">
-               <Label text="Done" type="mediumTitle" />
                {tasks && tasks.filter(task => task.status === 1).map((task) => {
                   return (
                      <div className="listItem">

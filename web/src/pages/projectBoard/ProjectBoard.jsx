@@ -9,8 +9,9 @@ import api from '../../services/api';
 function ProjectBoard(props) {
    const { user_id = "1" } = props;
 
-   const [projects, setProjects] = useState([]);
+   const [projects, setProjects] = useState([]);  
    const [tasks, setTasks] = useState([]);
+   const [flagNewProject, setFlagNewProject] = useState(false);  
    //TODO: Get User Projects
 
    const fechProjects = async () => {
@@ -30,6 +31,12 @@ function ProjectBoard(props) {
       fechTasks();
    }, []);
 
+   useEffect(() => {
+      fechProjects();
+      fechTasks();
+      setFlagNewProject(false);
+   }, [flagNewProject]);
+   
    return (
       <div className="projectBoardContainer">
          <div className="boardTopBar">
@@ -40,7 +47,9 @@ function ProjectBoard(props) {
          </div>
 
          <div className="boardBody">
-            <CreateProject />
+            <CreateProject 
+               callback={setFlagNewProject}
+            />
             <div className="rightPanel">
                {projects.map((project) => {
                   return (

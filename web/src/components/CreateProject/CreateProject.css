@@ -1,4 +1,4 @@
-.createProjectContainer{
+.createProjectContainer {
    display: flex;
    flex-direction: column;
    justify-content: center;
@@ -6,8 +6,9 @@
    height: 200px;
    width: 250px;
    padding: 0 20px;
+   border-radius: 5px;
 }
 
-.createProjectContainer .bigTitle{
+.createProjectContainer .bigTitle {
    margin-bottom: 10px;
 }

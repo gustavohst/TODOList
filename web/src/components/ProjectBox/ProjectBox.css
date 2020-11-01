@@ -2,7 +2,8 @@
    width: 300px;
    min-height: 400px;
    border: 1px solid #C6C6C6;
-   margin: 0 10px 10px 10px;
+   margin: 0 10px 20px 10px;
+   border-radius: 5px;
 }
 
 .topBar{
@@ -24,6 +25,8 @@
    flex-direction: column;
    align-items: flex-start;
    margin: 10px;
+   max-height: 170px;
+   overflow: auto;
 }
 
 .listItem{
@@ -41,4 +44,8 @@
 .pipeLine{
    border-top: 1px solid #C6C6C6;
    margin: 10px 10px;
+}
+
+.checkListTitle{
+   margin-left: 10px;
 }
