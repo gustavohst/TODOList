@@ -5,11 +5,20 @@ import { getRepository } from 'typeorm';
 const apiKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
 const manageToken = {
-   generateToken: function (email: string, password: string){
+   generateToken: async function (email: string, password: string){
+      const usersRepository = getRepository(User);
+
+      const actualUser = await usersRepository.findOne({
+         where: {
+            email: email,
+            password: password,
+         }
+      });
+
       let validate = new Date();
       let token = "";
       validate.setHours(validate.getHours() + 4);
-      token = `${email}:${password}:${validate.getTime()}:${apiKey}`;
+      token = `${email}:${password}:${validate.getTime()}:${apiKey}:${actualUser?.id}`;
       token =  btoa(token);
       return token;
    },
@@ -34,7 +43,8 @@ const manageToken = {
       if(userObject && userObject[0] === actualUser?.email 
          && userObject[1] === actualUser?.password 
          && Number(userObject[2]) >= time 
-         && userObject[3] === apiKey){
+         && userObject[3] === apiKey
+         && Number(userObject[4]) === actualUser?.id){
          return true;
       }
       else{

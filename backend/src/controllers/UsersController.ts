@@ -36,7 +36,7 @@ export default {
       });
 
       if(user){
-         return response.json(manageToken.generateToken(email, password));
+         return response.json(await manageToken.generateToken(email, password));
       }
 
       return response.json('');
