@@ -16,6 +16,13 @@ button:focus {
    padding: 0 30px;
    height: 30px;
    margin: 10px;
+   transition: background-color 0.3s ease;
+}
+
+.defaultButton:hover{
+   color: #2c974b;
+   background: honeydew;
+   border: 1px solid #2c974b;
 }
 
 .largeButton{
@@ -26,6 +33,13 @@ button:focus {
    height: 30px;
    min-width: 170px;
    margin: 10px;
+   transition: background-color 0.3s ease;
+}
+
+.largeButton:hover{
+   color: #45b6fe;
+   background: #f6f8ff;
+   border: 1px solid #45b6fe;
 }
 
 .menuItem{
@@ -37,6 +51,12 @@ button:focus {
    display: flex;
    justify-content: center;
    align-items: center;
+   transition: background-color 0.3s ease;
+}
+
+.menuItem:hover{
+   color:#666666;
+   background: #DDDDDD;
 }
 
 .topButton{
