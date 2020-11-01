@@ -8,6 +8,7 @@ const routes = Router();
 
 routes.get('/users', UsersController.index);
 routes.post('/users', UsersController.create);
+routes.post('/users/login', UsersController.login);
 
 routes.get('/projects', ProjectsController.index);
 routes.post('/projects', ProjectsController.create);

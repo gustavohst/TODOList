@@ -14,13 +14,25 @@ function CreateProject(props) {
 
    const [newProjectName, setNewProjectName] = useState();
 
+   const redirectPage = () => {
+      window.location.pathname = "/";
+   }
+
    const handleCreateProject = async (projectName) => {
       const payload = {
             "user_id": userId,
             "name": projectName,
       };
-      await api.post(`projects`, payload).then(response => {
+      let token = JSON.parse(localStorage.getItem('token'));
+
+      await api.post(`projects`, payload, {
+         headers: {
+           'Authorization': token,
+         }
+      }).then(() => {
          callback(true);
+      }).catch(()=>{
+         redirectPage();
       });
    }
 

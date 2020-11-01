@@ -1,6 +1,7 @@
 import { Request, Response} from 'express';
 import { getRepository } from 'typeorm';
 import User from '../models/User';
+import manageToken from "../helpers/manageToken";
 
 export default {
    async index(request: Request, response: Response){
@@ -17,6 +18,28 @@ export default {
       });
 
       return response.json(users);
+   },
+
+   async login(request: Request, response: Response){
+      const {
+         email,
+         password,
+      } = request.body;
+
+      const usersRepository = getRepository(User);
+
+      const user = await usersRepository.findOne({
+         where: {
+            email: email,
+            password: password,
+         }
+      });
+
+      if(user){
+         return response.json(manageToken.generateToken(email, password));
+      }
+
+      return response.json('');
    },
 
    async create(request: Request, response: Response){

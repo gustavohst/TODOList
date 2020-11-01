@@ -1,6 +1,7 @@
 import { Request, Response} from 'express';
 import { getRepository } from 'typeorm';
 import Project from '../models/Project';
+import manageToken from '../helpers/manageToken';
 
 export default {
    async index(request: Request, response: Response){
@@ -21,16 +22,23 @@ export default {
 
    async create(request: Request, response: Response){
       const { user_id, name, } = request.body
+      let token = '';
+      token = request.headers.authorization || '';
    
-      const projectsRepository = getRepository(Project);
-      const project = projectsRepository.create({
-         user_id,
-         name,
-      });
-   
-      await projectsRepository.save(project);
-   
-      return response.status(201).json(project);
+      console.log(await manageToken.verifyToken(token));
+      if(await manageToken.verifyToken(token)){
+         const projectsRepository = getRepository(Project);
+         const project = projectsRepository.create({
+            user_id,
+            name,
+         });
+      
+         await projectsRepository.save(project);
+      
+         return response.status(201).json(project);
+      }else{
+         return response.status(401).json('Not autorized');
+      }
    },
 
    async update(request: Request, response: Response){

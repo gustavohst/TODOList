@@ -17,7 +17,25 @@ function Login() {
       window.location.pathname = "/board";
    }
 
-   const createUser = async (taskItem) => {
+   function saveToStorage(token) {
+      localStorage.setItem('token', JSON.stringify(token));
+  }
+
+   const loginUser = async () => {
+      const payload = {
+         "email": userEmail,
+         "password": userPassword
+      }
+
+      await api.post('users/login', payload).then((response) => {
+         if(response.data){
+            saveToStorage(response.data);
+            redirectPage();
+         }
+      });
+   }
+
+   const createUser = async () => {
       const payload = {
          "name": userName,
          "email": userEmail,
@@ -49,15 +67,34 @@ function Login() {
                {loginView === 'SignIn'
                   ?
                   <>
-                     <TextField placeholder="User name" />
-                     <TextField type="password" placeholder="Password" />
-                     <Button layout="largeButton" label="Login" onClick={() => redirectPage()} />
+                     <TextField
+                        placeholder="User name"
+                        onBlur={event => setUserEmail(event.target.value)}
+                     />
+                     <TextField
+                        type="password"
+                        placeholder="Password"
+                        onBlur={event => setUserPassword(event.target.value)}
+                     />
+                     <Button
+                        layout="largeButton"
+                        label="Login"
+                        onClick={() => loginUser()} />
                   </>
                   :
                   <>
-                     <TextField placeholder="Choose a name" onBlur={event => setUserName(event.target.value)} />
-                     <TextField placeholder="Email" onBlur={event => setUserEmail(event.target.value)} />
-                     <TextField type="password" placeholder="Choose a password" onBlur={event => setUserPassword(event.target.value)} />
+                     <TextField
+                        placeholder="Choose a name"
+                        onBlur={event => setUserName(event.target.value)}
+                     />
+                     <TextField
+                        placeholder="Email"
+                        onBlur={event => setUserEmail(event.target.value)}
+                     />
+                     <TextField
+                        type="password"
+                        placeholder="Choose a password"
+                        onBlur={event => setUserPassword(event.target.value)} />
                      <Button layout="largeButton" label="Create" onClick={() => createUser()} />
                   </>
                }

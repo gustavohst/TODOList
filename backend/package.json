@@ -8,7 +8,11 @@
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
+    "@types/atob": "^2.1.2",
+    "@types/btoa": "^1.2.3",
     "@types/cors": "^2.8.8",
+    "atob": "^2.1.2",
+    "btoa": "^1.2.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "sqlite3": "^5.0.0",
