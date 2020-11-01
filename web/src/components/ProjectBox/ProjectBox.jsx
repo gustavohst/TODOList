@@ -40,6 +40,13 @@ function ProjectBox(props) {
       });
    }
 
+   const deleteTask = async (taskId) => {
+      await api.delete(`tasks/${taskId}`).then(() => {
+         let actualTasks = tasks.filter(task => task.id !== taskId) 
+         setTasks(actualTasks);
+      });
+   }
+
    const deleteProject = async (projectId) => {
       await api.delete(`projects/${projectId}`).then(() => {
          callback(true);
@@ -61,7 +68,6 @@ function ProjectBox(props) {
          setTasks(test);
          addTaskStatus(newTask)
       }
-      //TODO: Insert in database.    
    }, [tasks]);
 
    return (
@@ -94,7 +100,7 @@ function ProjectBox(props) {
                            onChange={() => handleCheck(task)}
                         />
                         <Button
-                           //onClick={() => handleAddTask(newTaskName)}
+                           onClick={() => deleteTask(task.id)}
                            icon="delete_forever"
                         />
                      </div>
