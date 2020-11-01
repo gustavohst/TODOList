@@ -16,9 +16,8 @@ routes.delete('/projects/:id', ProjectsController.delete);
 
 routes.get('/tasks', TasksController.index);
 routes.get('/tasks/:id', TasksController.show);
-//routes.post('/tasks', TasksController.create);
+routes.post('/tasks', TasksController.create);
 routes.put('/tasks/:id', TasksController.update);
 routes.delete('/tasks/:id', TasksController.delete);
-//
 
 export default routes;

@@ -8,6 +8,8 @@
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
+    "@types/cors": "^2.8.8",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "sqlite3": "^5.0.0",
     "typeorm": "^0.2.28"
