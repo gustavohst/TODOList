@@ -58,6 +58,7 @@ function ProjectBoard(props) {
                         taskList={tasks.filter(x => x.project_id === project.id)}
                         projectName={project.name}
                         projectId={project.id}
+                        callback={setFlagNewProject}
                      />
                   );
                })

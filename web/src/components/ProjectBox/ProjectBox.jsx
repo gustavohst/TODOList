@@ -10,7 +10,8 @@ function ProjectBox(props) {
    const {
       projectName,
       projectId,
-      taskList, //TODO: RECEIVE A CHECKLIST ITEMS
+      taskList,
+      callback, //TODO: RECEIVE A CHECKLIST ITEMS
    } = props;
 
    const [tasks, setTasks] = useState(taskList);
@@ -36,6 +37,12 @@ function ProjectBox(props) {
 
       await api.post(`tasks`, payload).then(response => {
          console.log(response.data);
+      });
+   }
+
+   const deleteProject = async (projectId) => {
+      await api.delete(`projects/${projectId}`).then(() => {
+         callback(true);
       });
    }
 
@@ -68,7 +75,7 @@ function ProjectBox(props) {
                      icon="edit"
                   />
                   <Button
-                     //onClick={() => handleAddTask(newTaskName)}
+                     onClick={() => deleteProject(projectId)}
                      icon="delete_forever"
                   />
                </div>
