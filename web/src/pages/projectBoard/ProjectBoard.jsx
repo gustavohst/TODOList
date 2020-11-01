@@ -41,18 +41,19 @@ function ProjectBoard(props) {
 
          <div className="boardBody">
             <CreateProject />
-            {projects.map((project) => {
-               return (
-                  <ProjectBox
-                     key={project.id}
-                     taskList={tasks.filter(x => x.project_id === project.id)}
-                     projectName={project.name} 
-                     projectId={project.id}
-                  />
-               );
-            })
-            }
-
+            <div className="rightPanel">
+               {projects.map((project) => {
+                  return (
+                     <ProjectBox
+                        key={project.id}
+                        taskList={tasks.filter(x => x.project_id === project.id)}
+                        projectName={project.name}
+                        projectId={project.id}
+                     />
+                  );
+               })
+               }
+            </div>
          </div>
       </div>
    );

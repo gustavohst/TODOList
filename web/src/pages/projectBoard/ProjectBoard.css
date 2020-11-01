@@ -6,9 +6,15 @@
 
 .boardBody{
    display:flex;
-   flex-direction: row;
-   justify-content: space-around;
    padding: 0 30px 30px 30px;
+}
+
+.rightPanel {
+   display: flex;
+   flex-wrap: wrap;
+   height: 70vh;
+   overflow: scroll;
+   overflow-x: hidden;
 }
 
 .boardTopBar{
