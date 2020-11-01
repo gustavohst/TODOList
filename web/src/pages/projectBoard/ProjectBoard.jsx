@@ -16,14 +16,12 @@ function ProjectBoard(props) {
    const fechProjects = async () => {
       await api.get(`projects?user_id=${user_id}`).then(response => {
          setProjects(response.data);
-         console.log(response.data);
       });
    }
 
    const fechTasks = async () => {
       await api.get('tasks').then(response => {
          setTasks(response.data);
-         console.log(response.data);
       });
    }
 
@@ -48,7 +46,9 @@ function ProjectBoard(props) {
                   <ProjectBox
                      key={project.id}
                      taskList={tasks.filter(x => x.project_id === project.id)}
-                     projectName={project.name} />
+                     projectName={project.name} 
+                     projectId={project.id}
+                  />
                );
             })
             }

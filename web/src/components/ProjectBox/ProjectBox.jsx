@@ -10,6 +10,7 @@ import api from "../../services/api"
 function ProjectBox(props) {
    const {
       projectName,
+      projectId,
       taskList, //TODO: RECEIVE A CHECKLIST ITEMS
    } = props;
 
@@ -26,6 +27,19 @@ function ProjectBox(props) {
       });
    }
 
+   const addTaskStatus = async (taskItem) => {
+      const payload = {
+         "project_id": taskItem.project_id,
+         "description": taskItem.description,
+         "status": 0,
+         "creation_date": new Date(),
+      }
+
+      await api.post(`tasks`, payload).then(response => {
+         console.log(response.data);
+      });
+   }
+
    const handleCheck = (taskItem) => {
       let status = taskItem.status === 0 ? 1 : 0;    
       let newTaskList = tasks.map(task => (task.id === taskItem.id ? {...task, status} : task));    
@@ -34,11 +48,12 @@ function ProjectBox(props) {
    } 
 
    const handleAddTask = useCallback((newTaskName) => {
-      let newTask = { id: tasks.length, taskName: newTaskName, status: 0 }    
+      let newTask = { id: tasks.length, description: newTaskName, status: 0, project_id: projectId }    
  
       if(tasks){
          let test = [...tasks, newTask];
          setTasks(test);
+         addTaskStatus(newTask)
       }
       //TODO: Insert in database.    
    },[tasks]);
