@@ -12,16 +12,7 @@ function ProjectBox(props) {
       taskList, //TODO: RECEIVE A CHECKLIST ITEMS
    } = props;
 
-   const [tasks, setTasks] = useState([
-      { id: 0, taskName: "Task five", status: 0 },
-      { id: 1, taskName: "Task six", status: 0 },
-      { id: 2, taskName: "Task seven", status: 0 },
-      { id: 3, taskName: "Task eight", status: 0 },
-      { id: 4, taskName: "Task one", status: 1 },
-      { id: 5, taskName: "Task two", status: 1 },
-      { id: 6, taskName: "Task tree", status: 1 },
-      { id: 7, taskName: "Task four", status: 1 },
-   ]);
+   const [tasks, setTasks] = useState(taskList);
    const [newTaskName, setNewTaskName] = useState();
 
    const handleCheck = (taskItem) => {
@@ -57,7 +48,7 @@ function ProjectBox(props) {
                   return (
                      <Checkbox 
                         key={task.id} 
-                        label={task.taskName}
+                        label={task.description}
                         checked={task.status}
                         onChange={() => handleCheck(task)}
                      />)
@@ -70,7 +61,7 @@ function ProjectBox(props) {
                   return (
                      <Checkbox 
                         key={task.id} 
-                        label={task.taskName} 
+                        label={task.description} 
                         checked={task.status}
                         onChange={() => handleCheck(task)}
                      />)

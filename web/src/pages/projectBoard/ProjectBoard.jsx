@@ -10,17 +10,27 @@ function ProjectBoard(props) {
    const { user_id = "1" } = props;
 
    const [projects, setProjects] = useState([]);
+   const [tasks, setTasks] = useState([]);
    //TODO: Get User Projects
 
    const fechProjects = async () => {
       await api.get(`projects?user_id=${user_id}`).then(response => {
          setProjects(response.data);
+         console.log(response.data);
       });
-   } 
+   }
 
-   useEffect(()=>{
-      fechProjects().then(console.log(projects));
-   },[]);
+   const fechTasks = async () => {
+      await api.get('tasks').then(response => {
+         setTasks(response.data);
+         console.log(response.data);
+      });
+   }
+
+   useEffect(() => {
+      fechProjects();
+      fechTasks();
+   }, []);
 
    return (
       <div className="projectBoardContainer">
@@ -32,14 +42,17 @@ function ProjectBoard(props) {
          </div>
 
          <div className="boardBody">
-            <div>
-               <ProjectBox projectName="Project ABC" />
-            </div>
-            <div>
-               <ProjectBox projectName="Project ABC" />
-            </div>
-
             <CreateProject />
+            {projects.map((project) => {
+               return (
+                  <ProjectBox
+                     //key={project.id}
+                     taskList={tasks.filter(x => x.project_id === project.id)}
+                     projectName={project.name} />
+               );
+            })
+            }
+
          </div>
       </div>
    );

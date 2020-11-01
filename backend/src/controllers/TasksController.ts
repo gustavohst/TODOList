@@ -3,16 +3,24 @@ import { getRepository } from 'typeorm';
 import Task from '../models/Task';
 
 export default {
-   async index(request: Request, response: Response){
-      const { project_id } = request.query;
+   // async index(request: Request, response: Response){
+   //    const { project_id } = request.query;
 
+   //    const tasksRepository = getRepository(Task);
+
+   //    const tasks = await tasksRepository.find({
+   //       where: {
+   //          project_id: project_id,
+   //       }
+   //    });
+
+   //    return response.json(tasks);
+   // },
+
+   async getall(request: Request, response: Response){
       const tasksRepository = getRepository(Task);
 
-      const tasks = await tasksRepository.find({
-         where: {
-            project_id: project_id,
-         }
-      });
+      const tasks = await tasksRepository.find();
 
       return response.json(tasks);
    },
