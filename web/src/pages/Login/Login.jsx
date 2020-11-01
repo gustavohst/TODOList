@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-import './Login.css'
+import { Link } from 'react-router-dom';
 
+import './Login.css'
 import TextField from "../../components/TextField/TextField";
 import Button from "../../components/Button/Button";
 
 function Login() {
 
    const [loginView, setLoginView] = useState('SignIn');
+
+   const redirectPage = () => {
+      window.location.pathname = "/board";
+   }
 
    return (
       <>
@@ -30,7 +35,7 @@ function Login() {
                   <>
                      <TextField placeholder="User name" />
                      <TextField type="password" placeholder="Password" />
-                     <Button layout="largeButton" label="Login" />
+                     <Button layout="largeButton" label="Login" onClick={() => redirectPage()} />
                   </>
                   :
                   <>
