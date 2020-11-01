@@ -43,7 +43,7 @@ function Login() {
       }
 
       await api.post('users', payload).then(() => {
-         redirectPage();
+         setLoginView('SignIn');
       });
    }
 

@@ -8,7 +8,7 @@ import api from '../../services/api';
 
 function CreateProject(props) {
    const {
-      userId = 1,
+      userId,
       callback,
    } = props;
 

@@ -5,17 +5,20 @@ import ProjectBox from "../../components/ProjectBox/ProjectBox";
 import CreateProject from "../../components/CreateProject/CreateProject";
 import Menu from "../../components/Menu/Menu";
 import api from '../../services/api';
+import getAutenticatedUser from '../../helpers/autenticatedUser'
 
-function ProjectBoard(props) {
-   const { user_id = "1" } = props;
+function ProjectBoard() {
 
+   const logedUser =  getAutenticatedUser();
+ 
    const [projects, setProjects] = useState([]);  
    const [tasks, setTasks] = useState([]);
    const [flagNewProject, setFlagNewProject] = useState(false);  
    //TODO: Get User Projects
 
    const fechProjects = async () => {
-      await api.get(`projects?user_id=${user_id}`).then(response => {
+      console.log(logedUser);
+      await api.get(`projects?user_id=${logedUser.id}`).then(response => {
          setProjects(response.data);
       });
    }
@@ -49,6 +52,7 @@ function ProjectBoard(props) {
          <div className="boardBody">
             <CreateProject 
                callback={setFlagNewProject}
+               userId={logedUser.id}
             />
             <div className="rightPanel">
                {projects.map((project) => {
