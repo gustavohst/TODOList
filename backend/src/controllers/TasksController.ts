@@ -27,15 +27,19 @@ export default {
       return response.json(task);
    },
 
-   // async update(request: Request, response: Response){
-   //    const { id } = request.params;
+   async update(request: Request, response: Response){
+      const { id } = request.params;
 
-   //    const tasksRepository = getRepository(Task);
+      const tasksRepository = getRepository(Task);
 
-   //    const tasks = await tasksRepository.update();
+      const task = await tasksRepository.findOneOrFail(id);
+      task.status = 1;
+      task.finish_date = new Date();
 
-   //    return response.json(tasks);
-   // },
+      tasksRepository.save(task);
+
+      return response.json(task);
+   },
 
    async create(request: Request, response: Response){
       const {
@@ -55,5 +59,17 @@ export default {
    
       await tasksRepository.save(task);
       return response.status(201).json(task);
-   }
+   },
+
+   async delete(request: Request, response: Response){
+      const { id } = request.params;
+
+      const tasksRepository = getRepository(Task);
+
+      const task = await tasksRepository.findOneOrFail(id);
+
+      tasksRepository.remove(task);
+
+      return response.json(task);
+   },
 };

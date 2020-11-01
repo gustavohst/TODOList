@@ -20,10 +20,7 @@ export default {
    },
 
    async create(request: Request, response: Response){
-      const {
-         user_id,
-         name,
-      } = request.body
+      const { user_id, name, } = request.body
    
       const projectsRepository = getRepository(Project);
       const project = projectsRepository.create({
@@ -34,5 +31,32 @@ export default {
       await projectsRepository.save(project);
    
       return response.status(201).json(project);
-   }
+   },
+
+   async update(request: Request, response: Response){
+      const { id } = request.params;
+      const { name } = request.body;
+
+      const projectsRepository = getRepository(Project);
+
+      const project = await projectsRepository.findOneOrFail(id);
+      project.name = name;
+
+      projectsRepository.save(project);
+
+      return response.json(project);
+   },
+
+   async delete(request: Request, response: Response){
+      const { id } = request.params;
+
+      const projectsRepository = getRepository(Project);
+
+      const project = await projectsRepository.findOneOrFail(id);
+
+      projectsRepository.delete(project);
+
+      return response.json("project deleted");
+   },
+
 };

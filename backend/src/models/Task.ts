@@ -15,8 +15,8 @@ export default class Task {
    status: number;
 
    @Column()
-   creation_date: string;
+   creation_date: Date;
 
    @Column()
-   finish_date: string;
+   finish_date: Date;
 }
