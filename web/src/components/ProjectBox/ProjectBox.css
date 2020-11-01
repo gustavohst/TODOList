@@ -26,6 +26,11 @@
    margin: 10px;
 }
 
+.listItem{
+   display: flex;
+   margin: 5px 0;
+}
+
 .addNewTask{
    display: flex;
    justify-content: space-between;

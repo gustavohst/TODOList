@@ -12,7 +12,7 @@ function Checkbox(props){
     } = props
 
    return(
-      <div>
+      <div className="checkListContainer">
          <input 
             type="checkbox" 
             name={name} 

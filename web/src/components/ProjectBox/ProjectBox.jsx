@@ -77,12 +77,19 @@ function ProjectBox(props) {
                <Label text="To Do" type="mediumTitle" />
                {tasks && tasks.filter(task => task.status === 0).map((task) => {
                   return (
-                     <Checkbox
-                        key={task.id}
-                        label={task.description}
-                        checked={task.status}
-                        onChange={() => handleCheck(task)}
-                     />)
+                     <div className="listItem">
+                        <Checkbox
+                           key={task.id}
+                           label={task.description}
+                           checked={task.status}
+                           onChange={() => handleCheck(task)}
+                        />
+                        <Button
+                           //onClick={() => handleAddTask(newTaskName)}
+                           icon="delete_forever"
+                        />
+                     </div>
+                  )
                })}
             </div>
 
@@ -90,12 +97,15 @@ function ProjectBox(props) {
                <Label text="Done" type="mediumTitle" />
                {tasks && tasks.filter(task => task.status === 1).map((task) => {
                   return (
-                     <Checkbox
-                        key={task.id}
-                        label={task.description}
-                        checked={task.status}
-                        disabled={true}
-                     />)
+                     <div className="listItem">
+                        <Checkbox
+                           key={task.id}
+                           label={task.description}
+                           checked={task.status}
+                           disabled={true}
+                        />
+                     </div>
+                  )
                })}
             </div>
             <div className="pipeLine" />
