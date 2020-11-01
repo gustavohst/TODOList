@@ -74,7 +74,13 @@ function ProjectBox(props) {
    }
 
    const handleAddTask = useCallback((newTaskName) => {
-      let newTask = { id: tasks.length, description: newTaskName, status: 0, project_id: projectId }
+      let newTask = { 
+         id: tasks.length, 
+         description: newTaskName, 
+         status: 0, 
+         project_id: projectId,
+         creation_date: new Date(),
+       }
 
       if (tasks) {
          let test = [...tasks, newTask];
@@ -83,6 +89,10 @@ function ProjectBox(props) {
       }
    }, [tasks]);
 
+   const formatData = (date) => {
+      return new Date(date).toLocaleDateString();
+   }
+
    return (
       <>
          <div className="projectBoxContainer">
@@ -90,10 +100,10 @@ function ProjectBox(props) {
                {
                   editProjectName
                      ?
-                     <div><TextField 
-                        type="smallTitle" 
-                        onBlur={(event) => editProject(event.target.value)} 
-                        />
+                     <div><TextField
+                        type="smallTitle"
+                        onBlur={(event) => editProject(event.target.value)}
+                     />
                      </div>
                      :
                      <div><Label text={actualProjectName} type="smallTitle" /></div>
@@ -128,6 +138,10 @@ function ProjectBox(props) {
                            onClick={() => deleteTask(task.id)}
                            icon="delete_forever"
                         />
+                        <div className="tooltip">
+                           <span>Description: {task.description}</span>
+                           <span>Create date: {formatData(task.creation_date)}</span>
+                        </div>
                      </div>
                   )
                })}
@@ -146,6 +160,11 @@ function ProjectBox(props) {
                            checked={task.status}
                            disabled={true}
                         />
+                        <div className="tooltip">
+                           <span>Description: {task.description}</span>
+                           <span>Create date: {formatData(task.creation_date)}</span>
+                           <span>Done date: {formatData(task.finish_date)}</span>
+                        </div>
                      </div>
                   )
                })}

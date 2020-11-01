@@ -13,6 +13,10 @@ function Menu() {
       setShowMenu(!showMenu);
    }
 
+   const redirectPage = () => {
+      window.location.pathname = "/";
+   }
+
    return (
       <div>
          <Button
@@ -27,6 +31,7 @@ function Menu() {
                   layout="menuItem"
                   label="Logout"
                   icon="exit_to_app"
+                  onClick={() => redirectPage()}
                />
             </div>
          }
