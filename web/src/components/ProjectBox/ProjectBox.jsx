@@ -14,7 +14,7 @@ function ProjectBox(props) {
       callback, //TODO: RECEIVE A CHECKLIST ITEMS
    } = props;
 
-   const [tasks, setTasks] = useState(taskList);
+   const [tasks, setTasks] = useState();
    const [newTaskName, setNewTaskName] = useState();
    const [editProjectName, setEditProjectName] = useState(false);
    const [actualProjectName, setActualProjectName] = useState(projectName);
@@ -38,7 +38,9 @@ function ProjectBox(props) {
       }
 
       await api.post(`tasks`, payload).then(response => {
-         console.log(response.data);
+         let actualTasks = tasks;
+         actualTasks.push(response.data);
+         setTasks(actualTasks);
       });
    }
 
@@ -74,13 +76,13 @@ function ProjectBox(props) {
    }
 
    const handleAddTask = useCallback((newTaskName) => {
-      let newTask = { 
-         id: tasks.length, 
-         description: newTaskName, 
-         status: 0, 
+      let newTask = {
+         id: tasks.length,
+         description: newTaskName,
+         status: 0,
          project_id: projectId,
          creation_date: new Date(),
-       }
+      }
 
       if (tasks) {
          let test = [...tasks, newTask];
