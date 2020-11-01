@@ -8,11 +8,19 @@ function Checkbox(props){
       label,
       checked = false,
       onChange,
+      disabled = false
     } = props
 
    return(
       <div>
-         <input type="checkbox" name={name} value={value} checked={checked} onChange={onChange} />
+         <input 
+            type="checkbox" 
+            name={name} 
+            value={value} 
+            checked={checked} 
+            onChange={onChange}
+            disabled={disabled}
+         />
          <Label text={label}/>
       </div>
    );

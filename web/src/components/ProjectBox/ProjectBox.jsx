@@ -5,6 +5,7 @@ import Label from '../Label/Label'
 import Checkbox from "../Checkbox/Checkbox";
 import TextField from "../TextField/TextField";
 import Button from "../Button/Button";
+import api from "../../services/api"
 
 function ProjectBox(props) {
    const {
@@ -15,10 +16,20 @@ function ProjectBox(props) {
    const [tasks, setTasks] = useState(taskList);
    const [newTaskName, setNewTaskName] = useState();
 
+   useEffect(()=>{
+      setTasks(taskList)
+   },[taskList]);
+
+   const updateTaskStatus = async (taskId) => {
+      await api.put(`tasks/${taskId}`).then(response => {
+         console.log(response.data);
+      });
+   }
+
    const handleCheck = (taskItem) => {
       let status = taskItem.status === 0 ? 1 : 0;    
       let newTaskList = tasks.map(task => (task.id === taskItem.id ? {...task, status} : task));    
-      //TODO: Insert in database.
+      updateTaskStatus(taskItem.id)
       setTasks(newTaskList);
    } 
 
@@ -63,7 +74,7 @@ function ProjectBox(props) {
                         key={task.id} 
                         label={task.description} 
                         checked={task.status}
-                        onChange={() => handleCheck(task)}
+                        disabled={true}
                      />)
                })}
             </div>

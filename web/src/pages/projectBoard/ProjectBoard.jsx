@@ -46,7 +46,7 @@ function ProjectBoard(props) {
             {projects.map((project) => {
                return (
                   <ProjectBox
-                     //key={project.id}
+                     key={project.id}
                      taskList={tasks.filter(x => x.project_id === project.id)}
                      projectName={project.name} />
                );
