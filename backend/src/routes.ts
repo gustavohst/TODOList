@@ -1,67 +1,18 @@
 
 import { Router } from 'express';
-
-import { getRepository } from 'typeorm';
-import User from './models/User';
-import Project from './models/Project';
-import Task from './models/Task';
+import UsersController from './controllers/UsersController';
+import ProjectsController from './controllers/ProjectsController';
+import TasksController from './controllers/TasksController';
 
 const routes = Router();
 
-routes.post('/users', async (request, response) => {
-   const {
-      name,
-      email,
-      password,
-   } = request.body
+routes.get('/users', UsersController.index);
+routes.post('/users', UsersController.create);
 
-   const usersRepository = getRepository(User);
-   const user = usersRepository.create({
-      name,
-      email,
-      password,
-   });
+routes.get('/projects', ProjectsController.index);
+routes.post('/projects', ProjectsController.create);
 
-   await usersRepository.save(user);
-
-   return response.status(201).json(user);
-});
-
-routes.post('/projects', async (request, response) => {
-   const {
-      user_id,
-      name,
-   } = request.body
-
-   const projectsRepository = getRepository(Project);
-   const project = projectsRepository.create({
-      user_id,
-      name,
-   });
-
-   await projectsRepository.save(project);
-
-   return response.status(201).json(project);
-});
-
-routes.post('/tasks', async (request, response) => {
-   const {
-      project_id,
-      description,
-      status,
-      creation_date,
-   } = request.body
-
-   const tasksRepository = getRepository(Task);
-   const task = tasksRepository.create({
-      project_id,
-      description,
-      status,
-      creation_date,
-   });
-
-   await tasksRepository.save(task);
-   return response.status(201).json(task);
-});
+routes.get('/tasks', TasksController.index);
+routes.post('/tasks', TasksController.create);
 
 export default routes;
