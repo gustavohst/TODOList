@@ -96,90 +96,92 @@ function ProjectBox(props) {
    return (
       <>
          <div className="projectBoxContainer">
-            <div className="topBar">
-               {
-                  editProjectName
-                     ?
-                     <div><TextField
-                        type="smallTitle"
-                        onBlur={(event) => editProject(event.target.value)}
+            <div className="boxBlocks">
+               <div className="topBar">
+                  {
+                     editProjectName
+                        ?
+                        <div><TextField
+                           type="smallTitle"
+                           onBlur={(event) => editProject(event.target.value)}
+                        />
+                        </div>
+                        :
+                        <div><Label text={actualProjectName} type="smallTitle" /></div>
+                  }
+                  <div>
+                     <Button
+                        onClick={() => setEditProjectName(!editProjectName)}
+                        icon="edit"
                      />
-                     </div>
-                     :
-                     <div><Label text={actualProjectName} type="smallTitle" /></div>
-               }
+                     <Button
+                        onClick={() => deleteProject(projectId)}
+                        icon="delete_forever"
+                     />
+                  </div>
+               </div>
+               <div className="checkListTitle">
+                  <Label text="To Do" type="mediumTitle" />
+               </div>
+               <div className="checkList">
+                  {tasks && tasks.filter(task => task.status === 0).map((task) => {
+                     return (
+                        <div className="listItem">
+                           <Checkbox
+                              key={task.id}
+                              label={task.description}
+                              checked={task.status}
+                              onChange={() => handleCheck(task)}
+                           />
+                           <Button
+                              onClick={() => deleteTask(task.id)}
+                              icon="delete_forever"
+                           />
+                           <div className="tooltip">
+                              <span>Description: {task.description}</span>
+                              <span>Create date: {formatData(task.creation_date)}</span>
+                           </div>
+                        </div>
+                     )
+                  })}
+               </div>
+               <div className="checkListTitle">
+                  <Label text="Done" type="mediumTitle" />
+               </div>
 
-               {/*  */}
-               <div>
-                  <Button
-                     onClick={() => setEditProjectName(!editProjectName)}
-                     icon="edit"
-                  />
-                  <Button
-                     onClick={() => deleteProject(projectId)}
-                     icon="delete_forever"
-                  />
+               <div className="checkList">
+                  {tasks && tasks.filter(task => task.status === 1).map((task) => {
+                     return (
+                        <div className="listItem">
+                           <Checkbox
+                              key={task.id}
+                              label={task.description}
+                              checked={task.status}
+                              disabled={true}
+                           />
+                           <div className="tooltip">
+                              <span>Description: {task.description}</span>
+                              <span>Create date: {formatData(task.creation_date)}</span>
+                              <span>Done date: {formatData(task.finish_date)}</span>
+                           </div>
+                        </div>
+                     )
+                  })}
                </div>
             </div>
-            <div className="checkListTitle">
-               <Label text="To Do" type="mediumTitle" />
-            </div>
-            <div className="checkList">
-               {tasks && tasks.filter(task => task.status === 0).map((task) => {
-                  return (
-                     <div className="listItem">
-                        <Checkbox
-                           key={task.id}
-                           label={task.description}
-                           checked={task.status}
-                           onChange={() => handleCheck(task)}
-                        />
-                        <Button
-                           onClick={() => deleteTask(task.id)}
-                           icon="delete_forever"
-                        />
-                        <div className="tooltip">
-                           <span>Description: {task.description}</span>
-                           <span>Create date: {formatData(task.creation_date)}</span>
-                        </div>
-                     </div>
-                  )
-               })}
-            </div>
-            <div className="checkListTitle">
-               <Label text="Done" type="mediumTitle" />
-            </div>
-
-            <div className="checkList">
-               {tasks && tasks.filter(task => task.status === 1).map((task) => {
-                  return (
-                     <div className="listItem">
-                        <Checkbox
-                           key={task.id}
-                           label={task.description}
-                           checked={task.status}
-                           disabled={true}
-                        />
-                        <div className="tooltip">
-                           <span>Description: {task.description}</span>
-                           <span>Create date: {formatData(task.creation_date)}</span>
-                           <span>Done date: {formatData(task.finish_date)}</span>
-                        </div>
-                     </div>
-                  )
-               })}
-            </div>
-            <div className="pipeLine" />
-            <div className="addNewTask">
-               <TextField
-                  placeholder="Task"
-                  onBlur={event => setNewTaskName(event.target.value)}
-               />
-               <Button
-                  layout="defaultButton"
-                  label="Add"
-                  onClick={() => handleAddTask(newTaskName)}
-               />
+            <div className="boxBlocks">
+               <div className="pipeLine" />
+               <div className="addNewTask">
+                  <TextField
+                     placeholder="Task"
+                     onBlur={event => setNewTaskName(event.target.value)}
+                  />
+                  <Button
+                     layout="defaultButton"
+                     label="Add"
+                     onClick={() => handleAddTask(newTaskName)}
+                  />
+               </div>
             </div>
          </div>
       </>
