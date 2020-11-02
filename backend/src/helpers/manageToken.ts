@@ -38,7 +38,7 @@ const manageToken = {
             password: userObject[1],
          }
       });
-      if(userObject && userObject[0] === actualUser?.email 
+      if(actualUser && userObject && userObject[0] === actualUser?.email 
          && userObject[1] === actualUser?.password 
          && Number(userObject[2]) >= time 
          && userObject[3] === apiKey
