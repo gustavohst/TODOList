@@ -14,7 +14,6 @@ function ProjectBoard() {
    const [projects, setProjects] = useState([]);  
    const [tasks, setTasks] = useState([]);
    const [flagNewProject, setFlagNewProject] = useState(false);  
-   //TODO: Get User Projects
 
    const fechProjects = async () => {
       await api.get(`projects?user_id=${logedUser.id}`).then(response => {
@@ -44,7 +43,7 @@ function ProjectBoard() {
          <div className="boardTopBar">
             <div><Label type="bigTitle" text="ToDo List" /></div>
             <div>
-               <Menu />
+               <Menu email={logedUser.email}/>
             </div>
          </div>
 

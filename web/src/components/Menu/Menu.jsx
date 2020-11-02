@@ -3,7 +3,10 @@ import './Menu.css';
 
 import Button from "../Button/Button";
 
-function Menu() {
+function Menu(props) {
+   const { 
+      email = "User settings",
+    } = props;
 
    const [showMenu, setShowMenu] = useState(false);
 
@@ -20,7 +23,7 @@ function Menu() {
    return (
       <div>
          <Button
-            label="User settings"
+            label={email}
             layout="defaultButton"
             onClick={(event) => handleMenu(event)} 
          />
