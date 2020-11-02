@@ -6,6 +6,7 @@ import Button from "../Button/Button";
 function Menu(props) {
    const { 
       email = "User settings",
+      icon,
     } = props;
 
    const [showMenu, setShowMenu] = useState(false);
@@ -26,6 +27,7 @@ function Menu(props) {
             label={email}
             layout="defaultButton"
             onClick={(event) => handleMenu(event)} 
+            icon={icon}
          />
 
          {showMenu &&

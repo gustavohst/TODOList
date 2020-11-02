@@ -41,9 +41,16 @@ function ProjectBoard() {
    return (
       <div className="projectBoardContainer">
          <div className="boardTopBar">
-            <div><Label type="bigTitle" text="ToDo List" /></div>
             <div>
-               <Menu email={logedUser.email}/>
+               <Label 
+                  type="bigTitle" 
+                  text="ToDo List" 
+               />
+               </div>
+            <div>
+               <Menu 
+                  email={logedUser.email}
+               />
             </div>
          </div>
 
