@@ -4,6 +4,11 @@
    border: 1px solid #C6C6C6;
    margin: 0 10px 20px 10px;
    border-radius: 5px;
+   transition: box-shadow 0.25s ease-in-out ;
+}
+
+.projectBoxContainer:hover{
+   box-shadow: 3px 0px 12px 3px #C6C6C6;
 }
 
 .topBar{
