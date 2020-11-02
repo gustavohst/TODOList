@@ -93,6 +93,11 @@ function ProjectBox(props) {
       return new Date(date).toLocaleDateString();
    }
 
+   const handleTextField = (event) => {
+      setNewTaskName(event.target.value);
+      event.target.value='';
+   }
+
    return (
       <>
          <div className="projectBoxContainer">
@@ -174,7 +179,7 @@ function ProjectBox(props) {
                <div className="addNewTask">
                   <TextField
                      placeholder="Task"
-                     onBlur={event => setNewTaskName(event.target.value)}
+                     onBlur={event => handleTextField(event)}
                   />
                   <Button
                      layout="defaultButton"

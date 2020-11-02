@@ -36,6 +36,11 @@ function CreateProject(props) {
       });
    }
 
+   const handleTextField = (event) => {
+      setNewProjectName(event.target.value);
+      event.target.value='';
+   }
+
    return (
       <div className="createProjectContainer">
          <Label 
@@ -44,7 +49,7 @@ function CreateProject(props) {
          />
          <TextField 
             placeholder="Project name" 
-            onBlur={event => setNewProjectName(event.target.value)}  
+            onBlur={event => handleTextField(event)}  
          />
          <Button
             layout="largeButton"
