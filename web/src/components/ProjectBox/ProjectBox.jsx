@@ -24,9 +24,7 @@ function ProjectBox(props) {
    }, [taskList]);
 
    const updateTaskStatus = async (taskId) => {
-      await api.put(`tasks/${taskId}`).then(response => {
-         console.log(response.data);
-      });
+      await api.put(`tasks/${taskId}`)
    }
 
    const addTaskStatus = async (taskItem) => {

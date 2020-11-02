@@ -17,7 +17,6 @@ function ProjectBoard() {
    //TODO: Get User Projects
 
    const fechProjects = async () => {
-      console.log(logedUser);
       await api.get(`projects?user_id=${logedUser.id}`).then(response => {
          setProjects(response.data);
       });

@@ -25,7 +25,6 @@ export default {
       let token = '';
       token = request.headers.authorization || '';
    
-      console.log(await manageToken.verifyToken(token));
       if(await manageToken.verifyToken(token)){
          const projectsRepository = getRepository(Project);
          const project = projectsRepository.create({
